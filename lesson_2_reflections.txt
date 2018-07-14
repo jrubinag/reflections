@@ -1,0 +1,123 @@
+What makes a GIT Repository a repository?
+Last lesson, we interacted with an existing repository named as Asteroids . It looks similar to any other normal directory/folder in your machine. The only difference except that repositories store a bunch of meta data about the history of the repository since it was created originally. It got transferred during cloning it to your system.
+The metadata is stored in the main directory of the repository in your machine, but it exists inside a hidden object usually named as .git, since it is a hidden object the OS of your machine hides it (name of hidden files starts with a dot).
+Enter the command: ls -a which shows the names of all the files of that repositories (including the hidden files too) whereas only using ls will show the non-hidden files only.
+
+CREATING A GIT REPOSITORY
+
+Each Git repository is tied to a specific directory - the directory where you ran git init. Only files from that directory (and sub directories inside that directory) will be contained in that repository, and you can have different repositories in different directories.
+
+Note: it's often the case that a Git repository in some directory will only contain, or track, some of the files in that directory, rather than all of them. You'll see how this works later this lesson.
+
+So, suppose you have a normal folder, which you want to make a git repository, then just open the BASH in that directory and type git init to initialize it into a repository. You can view using ls -a that there should be a .git file now apart from your old files.
+When you initialize the repository, Git doesn’t create any commits for you. You’ll have to create the first commit yourself.
+﻿
+If you run git log to a newly created repository, since it now has zero commits, it returns an error which says: fatal:bad default revision 'HEAD' (or, fatal: your current branch 'master' does not have any commits yet)
+Now running the command git status will show you that you are in the master branch and this is the initial commit (i.e zero commit) with all the files present in the repo.
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        lesson_1_reflections_prompts.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+If you now add some file explicitly to the directory and then run git status , it will show you something like this:
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        lesson-2-reflection-prompts.txt
+        lesson_1_reflections_prompts.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+ADDING CHANGES TO AN EXISTING REPOSITORY
+New Changes/Working Directory->Staging Area->Existing Repository
+
+When you use git add <complete name of the file you want to add with extension>
+You will see that the file will be added to a staging area and thus called as a new file (green text). When you will commit it, using git commit then the files in the staging area (one or more files) will be transferred to the repository.
+
+
+
+How to write a commit message
+
+You're about to make your first commit to your reflections repository. When you do this, you'll need to write a commit message describing your changes. If you followed the instructions in the "Setting Up Your Workspace" video for your platform near the end of Lesson 1, the editor you chose will appear as soon as you run git commit and allow you to write a commit message. If you get an error message, you should try revisiting the instructions in Lesson 1 and make sure your text editor is set up properly.
+
+You can also specify a commit message via the command line by running git commit -m "Commit message" instead of just git commit. It's still a good idea to get an editor set up, since this will make it easier to write long commit messages that fully describe the change.
+Commit message style
+
+While commit message style varies from person to person, this style guide describes some common best practices when writing commit messages.
+
+
+Now I used git commit which opened the sublime text editor (subl=sublime_text.exe). Where in the top line I added my COMMIT MESSAGE and save the file and exited it. When I then ran git status, the file was no more present on the staging files/untracked files/new file. It was uploaded and can be viewed by using git log.
+
+GIT CHEAT SHEET
+
+
+git diff with no commit IDs will compare the working directory and staging area
+
+git diff --staged will compare the working directory with the recentl uploaded commit to the repository
+
+git reset --hard will clear everything that is currently present in the staging area. But be very careful while using this command. This action is irreversible.
+
+
+How can you use the staging area to make sure you have one commit per logical change? (answer it)
+
+
+First add files that are related to the first logical change you want to commit, and after making it sure you have staged all the files, make a commit. Next you stage other files that are related to the second logical change you want to commit, and so on.
+
+
+
+
+BRANCH
+
+git branch shows you all the branches you currently have on your repository
+
+git branch easy_mode this creates a new branch with the name easy_mode
+
+git checkout easy_mode moves the HEAD (or, the control) to the easy_mode branch which is currently same as its predecessor branch (i.e. master).
+
+
+What are some situations when branches would be helpful in keeping your history organized? How would branches help? When we do not want to affect the original version of the program but want to make experiments on a copy of the MASTER branch, then we use the concept of BRANCHES and apply our new features and testing on that. If it has to added to the MASTER branch later on then we MERGE it.
+
+
+The full command Caroline types to see the visual representation of the commit history is git log --graph --oneline master coins
+
+Or simply git log --graph --oneline
+
+Note that you'll need to check out the coins branch using the command git checkout coins before you can view the coins branch using git log
+
+
+MERGING
+
+git merge master coins will merge the 'coins' branch to 'master' branch. Make sure that you HEAD is currently in the master branch before merging, you can do this by ﻿git checkout master﻿ command.
+
+What is the result of merging two branches together? Why do we represent it in the diagram the way we do?
+
+We are able to combine good piece of work or successful features and add them on to the main master branch for program updates.
+
+
+After merging two branches, when you'll run git log, you will notice that the commits get arranged w.r.t the timestamp (i.e. when they were committed). Thus knowing/finding the exact difference of a certain commit from its parent commit may become difficult using git diff command. In such a case we can use git show <commit ID> to check the differences of a certain commit w.r.t its parent without knowing the parent's commit ID.
+
+
+
+
+DELETING A BRANCH
+
+Deleting a branch will only delete its label, not the commits. Command Used is ->>> git branch -d <branch_name>
+
+
+
+So, here in this new updated concept sheet we introduce the relation "refers-to" and also two new objects namely, branch and merge.
+
+What are the pros and cons of Git’s automatic merging vs. always doing merges manually?
+     Merging happens to be joining two different features into one system. Now merging can lead to conflicts due to differences in code or text format or anything else. In case of such a conflict, Git itself knows nothing, which one is right and which one is wrong. It is thus not an automaic process. The contributers need to get in touch and talk with each other and solve the conflict manually.
+     The Manual Process can be considered a boon, because Git doesn't know what feature we're trying to commit, neither does it know which one of them is correct. If we include Machine Learning concepts to Git someday, then may be it can come up with a good solution to the conflict. But the chances are extremely low. Thus manual merge conflict resolvations are always better.
+     Git merging is a huge advantage for programmers otherwise we had to copy paste different versions and snippets of the code and compile it again, and again run into an error and thus breaking it down entirely into hectic processes and extreme waste of time.
+
+(END OF LESSON 2)

@@ -1,0 +1,90 @@
+GIT LESSON 1
+How did viewing a diff between two versions of a file help you see the bug that was introduced?
+
+    When we used diff to compare two files we saw - signs that indicated the removal of some lines whereas + signs indicated addition of changes in new file
+How could having easy access to the entire history of a file make you a more efficient programmer in the long term?
+
+    Having access to entire history of a file will help me compare them easily and remove errors faster comparing the previously saved versions, thus more efficient.What do you think are the pros and cons of manually choosing when to create a commit, like you do in Git, vs having versions automatically saved, like Google docs does?
+
+    In Git, making manual saves i.e commits make it easier to backtrack the changes we made during any error correction.In this case there are optimally the perfect amount of changes made and equivalent normal amount of histories created. But in case of Google Docs, there are too many and frequent auto-saves which causes a large number of history creation of even the smallest similar type of changes.
+    Now, talking about cons, the interval between two commit varies from person to person, though it is a bad practice, some may make too many commits for smallest changes whereas some may make a very less commit i.e. allow huge time interval between two commits. These troubles due to manual commits need not happen in Google Docs.Why do you think some version control systems, like Git, allow saving multiple files in one commit, while others, like Google Docs, treat each file separately?
+
+    Because Git has this unique concept called REPOSITORY which is a collection of files. Changed made to any of the files in a commit will not affect other files but it will be parallely saved in that commit. But in case of Google Docs multiple file saving makes a huge mess up when you backtrack to see the history of the changes made, most of the time you will become clueless.
+    We can check all the changes made individually to each file in a repository in one commit simply by using the command:  git log --stat (this shows the statistics of the changes made in that commit). We can then use: git diff <the ID's of two commits> (to check the details of the changes made)How can you use the commands git log and git diff to view the history of files?
+
+    First you download the repository by "git clone <URL>". The to compare or view history,
+    Simply type "git log" to see all the commits that have been made with their commit IDs,authors, dates and descriptions.
+    Now check for the description or change you are looking for by simply scrolling the log.
+    You cannot do that until you press 'q' to quit the git log process.
+    Now use "git diff <first id i.e. original file> <second id i.e. new file>" and press enter
+    Here you see all the changes that you have made in that commit.
+    If they are not shown by colors, enter this command to facilitate colored view "git config --global colour.ui auto". This will apply colored view to changed lines for all future projects.
+    You can also view the statistics in log by typing this "git log --stat" to view the number of changes or modifications in each commit, all at once.How might using version control make you more confident to make changes that could break something?
+
+    Making mistakes on version control is just like knife through the butter. We can be more confident because of the feature called GIT CHECKOUT which is like running the previous version of the code and executing it to see how it works during that commit. Just enter,
+    git checkout <commit id>
+    to get the commit id you can use 'git log'.
+    Thus we can go back to any commit and check that when we first made the bug and then use GIT DIFF to compare the commits and check the bug.Now that you have your work-space set up, what do you want to try using Git for?
+
+    I will be able to code a lot more freely and not be worried of losing my previous versions of a code.What is a README?
+
+    Many projects contain a file named "README" that gives a general description of what the project does and how to use it. It's often a good idea to read this file before doing anything with the project, so the file is given this name to make users more likely to read it.
+
+SUMMARY OF GIT BASIC COMMANDS:
+
+Compare two commits, printing each line that is present in one commit but not the other.
+    git diff will do this. It takes two arguments - the two commit ids to compare.
+
+Make a copy of an entire Git repository, including the history, onto your own computer.
+    git clone will do this. It takes one argument - the url of the repository to copy.
+
+Temporarily reset all files in a directory to their state at the time of a specific commit.
+    git checkout will do this. It takes one argument - the commit ID to restore.
+
+Show the commits made in this repository, starting with the most recent.
+    git log will do this. It doesn't take any arguments.
+
+Behavior Of Git clone Vs COPY
+
+If someone else gives you the location of their directory or repository, you can copy or clone it to your own computer.
+    This is true for both copying a directory and cloning a repository.
+    As you saw in the previous lesson, if you have a URL to a repository, you can copy it to your computer using git clone.
+    
+    For copying a directory, you weren't expected to know this, but it is possible to copy a directory from one computer to another using the command SCD, which stands for "secure copy". The name was chosen because the SCP command lets you securely copy a directory from one computer to another.
+
+The history of changes to the directory or repository is copied.
+    This is true for cloning a repository, but not for copying a directory. The main reason to use git clone rather than copying the directory is because git clone will also copy the commit history of the repository. However, copying can be done on any directory, whereas git clone only works on a Git repository.
+
+If you make changes to the copied directory or cloned repository, the original will not change.
+    This is true for both copying a directory and cloning a repository. In both cases, you're making a copy that you can alter without changing the original.
+
+The state of every file in the directory or repository is copied.
+    This is true for both copying a directory and cloning a repository. In both cases, all the files are copied
+
+
+
+Behavior of git checkout
+
+Checking out an earlier commit will change the state of at least one file.
+
+This is sometimes true. Git doesn't allow you to save a new commit if no files have been updated, so you might think this is always true. However, it's possible to do the following:
+
+    Save a commit (call this commit 1).
+    Update some files and save another commit (call this commit 2).
+    Change all the files back to their state during commit 1, then save again (call this commit 3).
+
+This sometimes happens if commit 2 contained a bug, and it's important to fix the bug quickly. The easiest thing to do might be to remove all the changes introduced by commit 2 to fix the bug, then figure out how to safely reintroduce the changes later.
+
+At this point, commit 3 is the latest commit, so if you checkout commit 1, none of the files will be changed.
+
+Checking out an earlier commit will change the state of more than one file.
+
+Checking out an earlier commit will change the state of every file in the repository.
+
+Both of these are sometimes true. Since each commit tracks the state of all files in the repository, it is possible that checking out an earlier commit will change the state of multiple files, or even all the files in the repository. However, it is possible to save a new commit after changing only one file, so it is possible only one file will change.
+
+After checking out a commit, the state of all the files in the repository will be from the same point in time.
+
+This is always true. A commit saves a snapshot of all files in the repository at the time the commit was made, so checking out an earlier commit will result in all the files being reverted to their state at the time the commit was made. That is, the files will be in a consistent state.
+﻿
+(END OF LESSON 1)
