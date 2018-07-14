@@ -1,1 +1,2 @@
-
+When would you want to use a remote repository rather than keeping all your work local?
+ - When there is other people that is working on your project too, or when you want to keep your code safe in a remote repository, you know like an online backup.
