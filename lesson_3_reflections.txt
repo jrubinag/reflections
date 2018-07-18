@@ -9,3 +9,7 @@ Describe the differences between forks, clones, and branches. When would you use
 	- Clone : You clone a repository to your local repositories, you can do it from a github-s repository or from another repository in your local
 	- Branch : You create a branch IN a repository, it's about commits not about repositories
 
+What is the benefit of having a copy of the last known state of the remote stored locally?
+	- you can work without internet connection using the last know state of the remote repository, when you have 
+	  internet again you can sync your remote repo and you copy ot this in your local
+
